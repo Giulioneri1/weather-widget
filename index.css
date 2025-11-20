@@ -1,0 +1,355 @@
+:root {
+	--bg-gradient-start: #4D4F5E;
+	--bg-gradient-end: #2C2E3E;
+	--text-color: #ffffff;
+	--secondary-text: #9E9B9E;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Inter", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-weight: 400;
+	background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--text-color);
+}
+
+/* --- STANDARD CONTAINER FOR MOBILE VIEW --- */
+.mobile-container {
+    width: 100%; 
+    max-width: 400px;
+    height: 812px;
+    max-height: 90vh;
+
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+
+    background-color: #2C2E3E; 
+    border-radius: 40px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.bg-image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	transition: background-image 0.5s ease-in-out;
+	z-index: 0;
+}
+
+.bg-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	/* Colore scuro */
+	z-index: 1;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.slider-wrapper {
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: none;
+	/* Firefox */
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 2;
+}
+
+.slider-wrapper::-webkit-scrollbar {
+	display: none;
+}
+
+/* Chrome/Safari */
+
+.weather-slide {
+	min-width: 100%;
+	scroll-snap-align: start;
+	padding: 20px 0;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.pagination {
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+	z-index: 10;
+}
+
+.dot {
+	width: 12px;
+	height: 12px;
+	background: rgba(255, 255, 255, 0.4);
+	border-radius: 50%;
+	transition: 0.3s;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+.dot:focus-visible {
+	outline: 2px solid #D98A67;
+	outline-offset: 2px;
+}
+
+.dot.active {
+	background: #fff;
+	transform: scale(1.2);
+}
+
+header {
+	padding: 30px 20px 10px;
+	text-align: center;
+	flex-shrink: 0;
+}
+
+.location {
+	font-size: 1.2rem;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+.description {
+	font-size: 1rem;
+	font-weight: 400;
+	margin-top: 5px;
+	color: #ffffff;
+	opacity: 0.8;
+}
+
+/* Sezione Principale Meteo */
+.current-weather {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 20px 20px 0px;
+}
+
+.weather-main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 40px;
+}
+
+.weather-temp-icon {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.weather-icon {
+	font-size: 6rem;
+	color: white;
+	margin-right: 10px;
+}
+
+.temperature {
+	position: relative;
+}
+
+.temp-value {
+	font-size: 6rem;
+	font-weight: 400;
+}
+
+.temp-unit {
+	font-size: 3rem;
+	font-weight: 300;
+	position: absolute;
+}
+
+.weather-max-min {
+	font-size: 1.2rem;
+	font-weight: 300;
+}
+
+.weather-details {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	padding: 0 20px;
+	margin-bottom: 40px;
+}
+
+.detail-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 0.9rem;
+}
+
+.detail-item i {
+	margin-bottom: 5px;
+	color: #AACFE5;
+}
+
+/* --- FORECAST COMPONENT --- */
+.forecast {
+	/* flex: 1; */
+
+	height: auto;
+	/* L'altezza si adatta al contenuto */
+	flex-grow: 0;
+	/* Non espanderti */
+	margin-bottom: 50px;
+	/* Lascia spazio per i pallini in basso */
+
+	/* Rendiamolo una "Card" flottante arrotondando anche sotto */
+	border-radius: 25px;
+	background: rgba(0, 0, 0, 0.25);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	padding: 15px 20px;
+	/* border-radius: 20px 20px 0 0; */
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	gap: 5px;
+}
+
+.forecast-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: rgba(255, 255, 255, 0.6);
+	padding-bottom: 10px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.forecast-header>i {
+	padding-right: 0;
+	font-size: 0.9rem;
+}
+
+.forecast-day {
+	display: flex;
+	align-items: center;
+	font-size: 0.9rem;
+	padding: 12px 0;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.forecast-day:last-child {
+	border-bottom: none;
+}
+
+.day-name {
+	font-weight: 500;
+	width: 60px;
+	text-align: left;
+}
+
+.day-icon {
+	font-size: 1.2rem;
+	width: 30px;
+	text-align: center;
+	color: #fff;
+}
+
+.temp-container {
+	margin-left: auto;
+	text-align: right;
+	font-weight: 500;
+}
+
+.day-temp-min {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.day-temp-max {
+	color: white;
+	text-align: right;
+}
+
+/* --- COLORED ICON --- */
+.day-icon.fa-cloud-showers-heavy,
+.day-icon.fa-cloud-rain,
+.day-icon.fa-cloud-sun-rain,
+.day-icon.fa-cloud-moon-rain,
+.day-icon.fa-tint {
+	color: #AACFE5 !important;
+}
+
+.day-icon.fa-sun,
+.day-icon.fa-regular.fa-sun {
+	color: #FFCC00 !important;
+}
+
+.day-icon.fa-bolt {
+	color: #FFD700 !important;
+}
+
+.day-icon.fa-snowflake {
+	color: #E0FFFF !important;
+}
+
+.day-icon.fa-cloud-sun {
+	color: #FFDEAD !important;
+}
+
+/* --- DESKTOP VERSION (> 768px) --- */
+@media (min-width: 768px) {
+
+	.mobile-container {
+		/* Su desktop lo allarghiamo leggermente per leggibilità */
+		max-width: 420px;
+		height: 860px;
+
+		/* Lo rendiamo un oggetto "fisico" sullo schermo */
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+		transform: scale(1.02);
+		/* Un leggero zoom per importanza */
+	}
+}
