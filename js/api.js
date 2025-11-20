@@ -34,7 +34,6 @@ export async function fetchGeoData(city) {
 	const GEO_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${API_KEY}`;
 	const data = await fetchData(GEO_URL);
 	if (!data || data.length === 0) return null;
-	console.log(data);
 	return {
 		lat: data[0].lat,
 		lon: data[0].lon,

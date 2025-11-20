@@ -1,4 +1,5 @@
 import { capitalizeWords, getWeatherIconClass } from "../js/utils.js";
+import "./ForecastDay.js";
 
 export class WheatherForecast extends HTMLElement {
 	constructor() {
@@ -36,25 +37,22 @@ export class WheatherForecast extends HTMLElement {
             </div>
         `;
 
+		/* Generate list of forecast days elements */
 		const list = days.map(day => {
 			const dayName = capitalizeWords(day.day);
 			const iconClass = getWeatherIconClass(day.iconCode);
+			const tempMin = day.min;
+			const tempMax = day.max;
 
 			return `
-			<div class="forecast-day">
-				<span class="day-name">${dayName}</span>
-				<i class="${iconClass} day-icon" aria-hidden="true"></i>
-				<div class="temp-container">
-                    <span class="sr-only">Minima</span>
-                	<span class="day-temp-min">${day.min}°</span> 
-                	<span aria-hidden="true">/</span>
-                	<span class="sr-only">Massima</span>
-                	<span class="day-temp-max">${day.max}°</span>
-                </div>
-			</div>
+			<forecast-day 
+				day-name="${dayName}" 
+				icon-class="${iconClass}"
+				temp-min="${tempMin}"
+				temp-max="${tempMax}">
+			</forecast-day>
 			`;
 		}).join('');
-
 
 		this.innerHTML = `
             ${header}
