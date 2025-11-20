@@ -64,7 +64,6 @@ body {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.3);
-	/* Colore scuro */
 	z-index: 1;
 }
 
@@ -85,7 +84,6 @@ body {
 	overflow-x: auto;
 	scroll-snap-type: x mandatory;
 	scrollbar-width: none;
-	/* Firefox */
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -95,8 +93,6 @@ body {
 .slider-wrapper::-webkit-scrollbar {
 	display: none;
 }
-
-/* Chrome/Safari */
 
 .weather-slide {
 	min-width: 100%;
@@ -159,7 +155,6 @@ header {
 	opacity: 0.8;
 }
 
-/* Sezione Principale Meteo */
 .current-weather {
 	flex: 1;
 	display: flex;
@@ -231,22 +226,15 @@ header {
 
 /* --- FORECAST COMPONENT --- */
 .forecast {
-	/* flex: 1; */
 
 	height: auto;
-	/* L'altezza si adatta al contenuto */
 	flex-grow: 0;
-	/* Non espanderti */
 	margin-bottom: 50px;
-	/* Lascia spazio per i pallini in basso */
-
-	/* Rendiamolo una "Card" flottante arrotondando anche sotto */
 	border-radius: 25px;
 	background: rgba(0, 0, 0, 0.25);
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
 	padding: 15px 20px;
-	/* border-radius: 20px 20px 0 0; */
 	border-top: 1px solid rgba(255, 255, 255, 0.1);
 	display: flex;
 	flex-direction: column;
@@ -342,14 +330,10 @@ header {
 @media (min-width: 768px) {
 
 	.mobile-container {
-		/* Su desktop lo allarghiamo leggermente per leggibilità */
 		max-width: 420px;
 		height: 860px;
-
-		/* Lo rendiamo un oggetto "fisico" sullo schermo */
 		border: 1px solid rgba(255, 255, 255, 0.1);
 		box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
 		transform: scale(1.02);
-		/* Un leggero zoom per importanza */
 	}
 }

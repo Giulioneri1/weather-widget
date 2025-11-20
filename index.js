@@ -192,9 +192,9 @@ function updateCurrentWeather(slide, weatherData) {
 	// Update additional weather details
 	const weatherDetailsElement = slide.querySelector('weather-details');
 	const details = [
-		{ icon: "fas fa-tint", val: `${weatherData.humidity}%`, label: "Umidità" },
-		{ icon: "fas fa-wind", val: `${weatherData.windSpeed} m/s`, label: "Vento" },
-		{ icon: "fas fa-eye", val: `${weatherData.visibility} km`, label: "Visibilità" },
+		{ icon: "fas fa-tint", val: `${weatherData.humidity}%`, label: "Humidity" },
+		{ icon: "fas fa-wind", val: `${weatherData.windSpeed} m/s`, label: "Wind" },
+		{ icon: "fas fa-eye", val: `${weatherData.visibility} km`, label: "Visibility" },
 	];
 	weatherDetailsElement.setAttribute('data-items', JSON.stringify(details));
 }
