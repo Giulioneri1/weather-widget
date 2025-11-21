@@ -67,7 +67,7 @@ async function initApp() {
 			/* Create pagination dot */
 			const dot = document.createElement('button');
 			dot.className = `dot ${index === 0 ? 'active' : ''}`;
-			dot.setAttribute('aria-label', `Vai alla meteo di ${city}`);
+			dot.setAttribute('aria-label', `Go to ${city} weather slide`);
 
 			/* Add click event to navigate to the corresponding slide */
 			dot.addEventListener('click', () => {
@@ -91,8 +91,8 @@ async function initApp() {
 	} catch (error) {
 		document.body.innerHTML = `
 		<div class="error-message">
-		<i class="fas fa-exclamation-triangle"></i>
-		<p>Failed to initialize the application</p>
+			<i class="fas fa-exclamation-triangle"></i>
+			<p>Failed to initialize the application</p>
 		</div>
         `;
 		console.error("Error initializing the app:", error);
@@ -235,6 +235,7 @@ function setupTabNavigation() {
 	pagination.addEventListener('keydown', (e) => {
 		if (e.key !== 'Tab') return; // Exit if the pressed key is not TAB
 
+		// Get all dots and identify the first and last ones
 		const dots = pagination.querySelectorAll('.dot');
 		const firstDot = dots[0];
 		const lastDot = dots[dots.length - 1];
