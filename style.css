@@ -25,25 +25,32 @@ body {
 	color: var(--text-color);
 }
 
-/* --- STANDARD CONTAINER FOR MOBILE VIEW --- */
-.mobile-container {
-    width: 100%; 
-    max-width: 400px;
-    height: 812px;
-    max-height: 90vh;
-
-    margin: auto;
-    position: relative;
-    overflow: hidden;
-
-    background-color: #2C2E3E; 
-    border-radius: 40px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-
-    display: flex;
-    flex-direction: column;
+header {
+	padding: 30px 20px 10px;
+	text-align: center;
+	flex-shrink: 0;
 }
 
+/* --- STANDARD CONTAINER FOR MOBILE VIEW --- */
+.mobile-container {
+	width: 100%;
+	max-width: 400px;
+	height: 812px;
+	max-height: 90vh;
+
+	margin: auto;
+	position: relative;
+	overflow: hidden;
+
+	background-color: #2C2E3E;
+	border-radius: 40px;
+	box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+
+	display: flex;
+	flex-direction: column;
+}
+
+/* --- BACKGROUND IMAGE & OVERLAY --- */
 .bg-image {
 	position: absolute;
 	top: 0;
@@ -67,6 +74,7 @@ body {
 	z-index: 1;
 }
 
+/* --- SCREEN READER ONLY --- */
 .sr-only {
 	position: absolute;
 	width: 1px;
@@ -79,6 +87,7 @@ body {
 	border: 0;
 }
 
+/* --- SLIDER CONTAINER --- */
 .slider-wrapper {
 	display: flex;
 	overflow-x: auto;
@@ -103,6 +112,7 @@ body {
 	flex-direction: column;
 }
 
+/* --- PAGINATION DOTS --- */
 .pagination {
 	position: absolute;
 	bottom: 10px;
@@ -135,12 +145,7 @@ body {
 	transform: scale(1.2);
 }
 
-header {
-	padding: 30px 20px 10px;
-	text-align: center;
-	flex-shrink: 0;
-}
-
+/* --- CURRENT WEATHER COMPONENT --- */
 .location {
 	font-size: 1.2rem;
 	font-weight: 600;
@@ -200,8 +205,8 @@ header {
 }
 
 .weather-max-min {
-	font-size: 1.2rem;
-	font-weight: 300;
+	font-size: 1.3rem;
+	font-weight: 500;
 }
 
 .weather-details {
@@ -296,7 +301,7 @@ header {
 }
 
 .day-temp-max {
-	color: white;
+	color: var(--text-color);
 	text-align: right;
 }
 
@@ -328,7 +333,6 @@ header {
 
 /* --- DESKTOP VERSION (> 768px) --- */
 @media (min-width: 768px) {
-
 	.mobile-container {
 		max-width: 420px;
 		height: 860px;

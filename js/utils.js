@@ -24,6 +24,8 @@ export function capitalizeWords(str) {
  * This function maps OpenWeatherMap icon codes to Font Awesome icon classes
  */
 export function getWeatherIconClass(apiIconCode) {
+	if (!apiIconCode) return 'fas fa-question';
+
 	const iconMap = {
 		'01d': 'fas fa-sun',
 		'01n': 'fas fa-moon',

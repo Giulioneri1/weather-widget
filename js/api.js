@@ -49,6 +49,8 @@ export async function fetchGeoData(city) {
  * This function fetches weather forecast data for given latitude and longitude
  */
 export async function fetchForecastData(lat, lon) {
+	if (!lat || !lon) return null;
+	
 	const FORECAST_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}&lang=en`;
 	const forecastData = await fetchData(FORECAST_URL);
 	return forecastData;
@@ -64,6 +66,8 @@ export async function fetchForecastData(lat, lon) {
  * and returns an object containing relevant weather information
  */
 export async function fetchWeatherData(city, lat, lon) {
+	if (!city || !lat || !lon) return null;
+
 	const WEATHER_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}&lang=en`;
 	const weatherData = await fetchData(WEATHER_URL);
 	if (!weatherData) return null;
@@ -89,6 +93,8 @@ export async function fetchWeatherData(city, lat, lon) {
  * aggregate them to get daily max and min temperatures
  */
 export function processForecastData(forecastList) {
+	if (!forecastList || forecastList.length === 0) return {};
+
 	const dailyForecasts = {};
 	const today = new Date().getDate();
 	forecastList.forEach(entry => {

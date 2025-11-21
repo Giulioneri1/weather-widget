@@ -14,10 +14,10 @@ export class ForecastDay extends HTMLElement {
 			<span class="day-name">${dayName}</span>
             <i class="${iconClass} day-icon" aria-hidden="true"></i>
             <div class="temp-container">
-                <span class="sr-only">Mininum</span>
+                <span class="sr-only">MIN:</span>
                 <span class="day-temp-min">${tempMin}°</span> 
                 <span aria-hidden="true">/</span>
-                <span class="sr-only">Maximun</span>
+                <span class="sr-only">MAX:</span>
                 <span class="day-temp-max">${tempMax}°</span>
             </div>
 		`;
