@@ -1,7 +1,7 @@
 import './components/WeatherDetails.js';
 import './components/Forecast.js';
 import './components/WeatherMain.js';
-import { getWeatherIconClass } from './js/utils.js';
+import { getWeatherIconClass, createAndAppend } from './js/utils.js';
 import { fetchGeoData, fetchWeatherData, fetchForecastData, processForecastData } from './js/api.js';
 
 const cities = ["London", "Milan", "Bangkok", "Los Angeles", "Nairobi"];
@@ -12,11 +12,11 @@ const pagination = document.getElementById('pagination');
 
 /* City images mapping */
 const cityImages = {
-	"London": "./img/london.webp",
-	"Milan": "./img/duomo-milano.jpg",
+	"London": "./img/london.jpg",
+	"Milan": "./img/milan.jpg",
 	"Bangkok": "./img/bangkok.jpg",
 	"Los Angeles": "./img/los-angeles.webp",
-	"Nairobi": "./img/nairobi.webp"
+	"Nairobi": "./img/nairobi.jpg"
 };
 
 const defaultCity = "London";
@@ -51,39 +51,41 @@ async function initApp() {
 		slider.innerHTML = ''; // Clear previous slides
 		pagination.innerHTML = ''; // Clear previous dots
 
-		/* Create slides for each city */
+		/* Create slides and dots for each city */
 		cities.forEach((city, index) => {
 
 			/* Create slide element */
-			const currentSlide = document.createElement('div');
-			currentSlide.className = 'weather-slide';
-			currentSlide.id = `slide-${index}`;
-
-			/* Create HMTL template for the slide */
-			currentSlide.innerHTML = getSlideHTMLTemplate(city);
-
-			slider.appendChild(currentSlide);
+			const slide = createAndAppend(
+				'div',
+				slider,
+				'weather-slide',
+				getSlideHTMLTemplate(city),
+				[{ name: 'id', value: `slide-${index}` }]
+			);
 
 			/* Create pagination dot */
-			const dot = document.createElement('button');
-			dot.className = `dot ${index === 0 ? 'active' : ''}`;
-			dot.setAttribute('aria-label', `Go to ${city} weather slide`);
+			const dot = createAndAppend(
+				'button',
+				pagination,
+				`dot ${index === 0 ? 'active' : ''}`,
+				null,
+				[{ name: 'aria-label', value: `Go to ${city} weather slide` }]
+			);
 
 			/* Add click event to navigate to the corresponding slide */
 			dot.addEventListener('click', () => {
-				currentSlide.scrollIntoView({ behavior: 'smooth' });
+				slide.scrollIntoView({ behavior: 'smooth' });
 			});
 
 			pagination.appendChild(dot);
 
-			observer.observe(currentSlide); // Start observing the slide
+			observer.observe(slide); // Start observing the slide
 
 			// Retrieve and populate weather data for the slide
-			loadSlideData(city, currentSlide);
+			loadSlideData(city, slide);
 		});
 
-		/* Set background for the first city */
-		changeBackground(cities[0]);
+		// changeBackground(cities[0]);
 
 		/* Setup keyboard navigation */
 		setupTabNavigation();
@@ -203,9 +205,9 @@ function updateCurrentWeather(slide, weatherData) {
  */
 function updateForecast(slide, dailyForecasts) {
 	if (!dailyForecasts || Object.keys(dailyForecasts).length === 0) {
-        console.error('No forecast data available');
-        return;
-    }
+		console.error('No forecast data available');
+		return;
+	}
 	const forecastComp = slide.querySelector('weather-forecast');
 	const len = Object.values(dailyForecasts).length;
 

@@ -10,7 +10,7 @@ const defaultCity = "London";
  * @returns {Promise<Object|null>}
  * This function fetches data from a given URL and returns the parsed JSON response
  */
-async function fetchData(url) {
+export async function fetchData(url) {
 	try {
 		const response = await fetch(url);
 		if (!response.ok) throw new Error(response.statusText);
@@ -80,7 +80,8 @@ export async function fetchWeatherData(city, lat, lon) {
 		weatherDescription: capitalizeWords(weatherData.weather[0].description),
 		humidity: weatherData.main.humidity,
 		windSpeed: weatherData.wind.speed,
-		visibility: weatherData.visibility / 1000 // convert to km
+		visibility: weatherData.visibility / 1000, // convert to km
+		timezone: weatherData.timezone // in seconds
 	}
 }
 

@@ -60,7 +60,7 @@ header {
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	transition: background-image 0.5s ease-in-out;
+	transition: background-image 0.5s;
 	z-index: 0;
 }
 
@@ -215,6 +215,11 @@ header {
 	width: 100%;
 	padding: 0 20px;
 	margin-bottom: 40px;
+
+	padding: 1.5rem;
+	border-radius: 25px;
+	backdrop-filter: blur(10px);
+	background: rgba(0, 0, 0, 0.25);
 }
 
 .detail-item {
@@ -224,17 +229,24 @@ header {
 	font-size: 0.9rem;
 }
 
+.detail-label {
+	font-size: 0.8rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: rgba(255, 255, 255, 0.6);
+}
+
 .detail-item i {
-	margin-bottom: 5px;
+	margin-block: .75rem .5rem;
 	color: #AACFE5;
 }
 
 /* --- FORECAST COMPONENT --- */
 .forecast {
-
 	height: auto;
 	flex-grow: 0;
-	margin-bottom: 50px;
+	margin: 0 1.5rem 2.5rem;
 	border-radius: 25px;
 	background: rgba(0, 0, 0, 0.25);
 	backdrop-filter: blur(10px);

@@ -9,9 +9,9 @@ export class WeatherDetail extends HTMLElement {
         const value = this.getAttribute('value') || '';
         const label = this.getAttribute('label') || '';
         this.innerHTML = `
+            <span class="detail-label">${label}</span>  
             <i class="${icon}"></i>
             <span>${value}</span>
-            <span class="detail-label">${label}</span>  
         `;
 
         this.className = 'detail-item';

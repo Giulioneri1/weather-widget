@@ -49,3 +49,30 @@ export function getWeatherIconClass(apiIconCode) {
 
 	return iconMap[apiIconCode] || 'fas fa-question'; // Default icon if not found
 }
+
+/**
+ * 
+ * @param {string} tagName 
+ * @param {HTMLElement} parent 
+ * @param {string} className 
+ * @param {string} innerHTML 
+ * @param {Array<{name: string, value: string}>} attributes 
+ * @returns {HTMLElement}
+ * This function creates a new HTML element with specified properties and appends it to a parent element
+ */
+export function createAndAppend(tagName, parent, className, innerHTML, attributes) {
+	const elem = document.createElement(tagName);
+	if (className) {
+		elem.className = className;
+	}
+	if (innerHTML) {
+		elem.innerHTML = innerHTML;
+	}
+	if (attributes) {
+		attributes.forEach(attr => {
+			elem.setAttribute(attr.name, attr.value);
+		});
+	}
+	parent.appendChild(elem);
+	return elem;
+}
