@@ -37,10 +37,10 @@ export class WeatherMain extends HTMLElement {
             </div>    
             <div class="weather-max-min">
 				<span class="sr-only">MIN:</span>
-                <span class="min-temp">${data.tempMin}</span> 
+                <span class="min-temp">${data.tempMin}°</span>
                 <span aria-hidden="true">/</span> 
                 <span class="sr-only">MAX:</span>
-                <span class="max-temp">${data.tempMax}</span>
+                <span class="max-temp">${data.tempMax}°</span>
             </div>
 		`;
 

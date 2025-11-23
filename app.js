@@ -2,13 +2,9 @@ import './components/WeatherDetails.js';
 import './components/Forecast.js';
 import './components/WeatherMain.js';
 import { getWeatherIconClass, createAndAppend } from './js/utils.js';
-import { fetchGeoData, fetchWeatherData, fetchForecastData, processForecastData } from './js/api.js';
+import { fetchGeoData, fetchWeatherData, fetchForecastData, processForecastData, fetchData } from './js/api.js';
 
 const cities = ["London", "Milan", "Bangkok", "Los Angeles", "Nairobi"];
-
-/* Get carousel elements */
-const slider = document.getElementById('slider-wrapper');
-const pagination = document.getElementById('pagination');
 
 /* City images mapping */
 const cityImages = {
@@ -20,7 +16,11 @@ const cityImages = {
 };
 
 const defaultCity = "London";
-const defaultCityImage = cityImages[defaultCity] || "./img/london.webp";
+const defaultCityImage = cityImages[defaultCity] || "./img/london.jpg";
+
+/* Get carousel elements */
+const slider = document.getElementById('slider-wrapper');
+const pagination = document.getElementById('pagination');
 
 // Swipe Logic (Intersection Observer)
 const observer = new IntersectionObserver((entries) => {
@@ -53,7 +53,6 @@ async function initApp() {
 
 		/* Create slides and dots for each city */
 		cities.forEach((city, index) => {
-
 			/* Create slide element */
 			const slide = createAndAppend(
 				'div',
@@ -84,8 +83,6 @@ async function initApp() {
 			// Retrieve and populate weather data for the slide
 			loadSlideData(city, slide);
 		});
-
-		// changeBackground(cities[0]);
 
 		/* Setup keyboard navigation */
 		setupTabNavigation();
